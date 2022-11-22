@@ -1,19 +1,15 @@
-S3_BUCKET_SRC=trady-cloud-src
-S3_BUCKET_TERRAFORM=trady-cloud-terraform
-REGION=us-west-2
-
-# Create bucket for resources
-if aws s3 ls "s3://$S3_BUCKET_SRC" 2>&1 | grep -q 'An error occurred.'
+# Create bucket for resources in chosen region
+if aws s3 ls "s3://$2" 2>&1 | grep -q 'An error occurred.'
 then
-    aws s3api create-bucket --bucket $S3_BUCKET_SRC --region $REGION --create-bucket-configuration LocationConstraint=$REGION
+    aws s3api create-bucket --bucket $S1 --region $1 --create-bucket-configuration LocationConstraint=$1
 else
-    echo "Bucket '$S3_BUCKET_SRC' already exists."
+    echo "Bucket '$2' already exists."
 fi
 
-# Create bucket for Terraform
-if aws s3 ls "s3://$S3_BUCKET_TERRAFORM" 2>&1 | grep -q 'An error occurred.'
+# Create bucket for Terraform in chosen region
+if aws s3 ls "s3://$3" 2>&1 | grep -q 'An error occurred.'
 then
-    aws s3api create-bucket --bucket $S3_BUCKET_TERRAFORM --region $REGION --create-bucket-configuration LocationConstraint=$REGION
+    aws s3api create-bucket --bucket $3 --region $1 --create-bucket-configuration LocationConstraint=$1
 else
-    echo "Bucket '$S3_BUCKET_TERRAFORM' already exists."
+    echo "Bucket '$3' already exists."
 fi
