@@ -13,4 +13,3 @@ create_aws_s3bucket_multi $REGION $S3_BUCKET_SRC $S3_BUCKET_TERRAFORM
 # Create from terraform-templates with variables: config.backend & variables
 create_tf_variables $REGION $S3_BUCKET_TERRAFORM
 create_tf_backend_s3 $REGION $S3_BUCKET_TERRAFORM
-
