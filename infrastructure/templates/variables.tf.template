@@ -1,0 +1,9 @@
+variable "aws_region" {
+    type = string
+    default = "REGION"
+}
+
+variable "s3bucket_terraform" {
+    type = string
+    default = "S3_BUCKET_TERRAFORM"
+}
