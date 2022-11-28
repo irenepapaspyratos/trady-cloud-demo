@@ -17,7 +17,7 @@ jobs:
       - name: Setup prerequisites
         run:  |
           sh prerequisites.sh
-      - name: run terraform
+      - name: Run terraform
         run:  |
           cd infrastructure
           terraform init -backend-config=./config.s3.tfbackend
