@@ -14,6 +14,11 @@ jobs:
         uses: ./.github/actions/setvars
         with:
           varFilePath: ./.github/variables/variables.env
-      - name: Test Variables
+      - name: Setup prerequisites
         run:  |
-          echo AWS_REGION
+          sh prerequisites.sh
+      - name: run terraform
+        run:  |
+          cd infrastructure
+          terraform init -backend-config=./config.s3.tfbackend
+          terraform apply -auto-approve
