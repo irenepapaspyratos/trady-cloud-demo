@@ -17,10 +17,11 @@ jobs:
       - name: Setup prerequisites
         run:  |
           cd scripts
+          aws sts get-caller-identity | cat
+           aws configure list 
           sh prerequisites.sh
       - name: Run terraform
         run:  |
           cd infrastructure
-          aws sts get-caller-identity | cat
           terraform init -backend-config=./config.s3.tfbackend
           terraform apply -auto-approve
