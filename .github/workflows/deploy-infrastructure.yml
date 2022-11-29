@@ -21,6 +21,5 @@ jobs:
       - name: Run terraform
         run:  |
           cd infrastructure
-          aws sts get-caller-identity | cat
           terraform init -backend-config=./config.s3.tfbackend
           terraform apply -auto-approve
