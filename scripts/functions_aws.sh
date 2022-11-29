@@ -15,8 +15,8 @@ create_aws_s3bucket() {
 create_aws_s3bucket_multi() {
     local region=$1
     shift
-    local buckets=("$@")
-    for b in "${buckets[@]}";
+    #local buckets=("$@")
+    for b in "$@";
         do
             create_aws_s3bucket $region $b | cat
         done
