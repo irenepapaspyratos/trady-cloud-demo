@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source functions_aws.sh
-source functions_terraform.sh
-source functions_github.sh
+source scripts/functions_aws.sh
+source scripts/functions_terraform.sh
+source scripts/functions_github.sh
 
 S3_BUCKET_SRC=trady-cloud-src
 S3_BUCKET_TERRAFORM=trady-cloud-terraform
