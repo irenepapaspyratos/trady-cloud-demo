@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Create a single bucket in AWS S3
-create_aws_s3bucket {
+create_aws_s3bucket() {
     if 
         aws s3 ls "s3://$2" 2>&1 | grep -q 'An error occurred.'
     then
@@ -12,18 +12,12 @@ create_aws_s3bucket {
 }
 
 # Create many buckets in AWS S3 in the same region
-create_aws_s3bucket_multi {
+create_aws_s3bucket_multi() {
     local region=$1
     shift
     local buckets=("$@")
     for b in "${buckets[@]}";
         do
-            if 
-                aws s3 ls "s3://$b" 2>&1 | grep -q 'An error occurred.'
-            then
-                aws s3api create-bucket --bucket $b --region $1 --create-bucket-configuration LocationConstraint=$1 | cat
-            else
-                echo "Bucket '$b' already exists."
-            fi
+            create_aws_s3bucket $1 $b | cat
         done
 }
