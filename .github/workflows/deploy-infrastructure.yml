@@ -1,0 +1,24 @@
+name: Deploy infrastructure
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+ 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set Environment Variables
+        uses: ./.github/actions/setvars
+        with:
+          varFilePath: ./.github/variables/variables.env
+      - name: Setup prerequisites
+        run:  |
+          sh prerequisites.sh
+      - name: Run terraform
+        run:  |
+          cd infrastructure
+          terraform init -backend-config=./config.s3.tfbackend
+          terraform apply -auto-approve

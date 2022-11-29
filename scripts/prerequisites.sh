@@ -2,10 +2,14 @@
 
 source functions_aws.sh
 source functions_terraform.sh
+source functions_github.sh
 
 S3_BUCKET_SRC=trady-cloud-src
 S3_BUCKET_TERRAFORM=trady-cloud-terraform
 REGION=us-west-2
+
+# Create Environment Variables for Github
+create_gh_variables $REGION
 
 # Create buckets necessary for Terraform via script as the sandbox does not allow creating them via Terraform itself
 create_aws_s3bucket_multi $REGION $S3_BUCKET_SRC $S3_BUCKET_TERRAFORM
