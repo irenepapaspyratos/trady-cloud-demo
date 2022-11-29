@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Create a single bucket in AWS S3
-create_aws_s3bucket() {
+create_aws_s3bucket {
     if 
         aws s3 ls "s3://$2" 2>&1 | grep -q 'An error occurred.'
     then
@@ -12,7 +12,7 @@ create_aws_s3bucket() {
 }
 
 # Create many buckets in AWS S3 in the same region
-create_aws_s3bucket_multi() {
+create_aws_s3bucket_multi {
     local region=$1
     shift
     local buckets=("$@")
