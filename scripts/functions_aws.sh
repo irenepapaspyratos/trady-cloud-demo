@@ -19,11 +19,11 @@ create_aws_s3bucket_multi {
     for b in "${buckets[@]}";
         do
             if 
-                aws s3 ls "s3://$2" 2>&1 | grep -q 'An error occurred.'
+                aws s3 ls "s3://$b" 2>&1 | grep -q 'An error occurred.'
             then
-                aws s3api create-bucket --bucket $2 --region $1 --create-bucket-configuration LocationConstraint=$1 | cat
+                aws s3api create-bucket --bucket $b --region $1 --create-bucket-configuration LocationConstraint=$1 | cat
             else
-                echo "Bucket '$2' already exists."
+                echo "Bucket '$b' already exists."
             fi
         done
 }
