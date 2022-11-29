@@ -16,7 +16,7 @@ jobs:
           varFilePath: ./.github/variables/variables.env
       - name: Setup prerequisites
         run:  |
-          sh prerequisites.sh
+          sh ./scripts/prerequisites.sh
       - name: Run terraform
         run:  |
           cd infrastructure
