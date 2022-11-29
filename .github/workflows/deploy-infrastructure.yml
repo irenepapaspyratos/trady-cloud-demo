@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set Environment Variables
-        uses: ./.github/actions/setvars
+        uses: ./.github/actions/setvars/set-vars.yml
         with:
           varFilePath: ./.github/variables/variables.env
       - name: Setup prerequisites
