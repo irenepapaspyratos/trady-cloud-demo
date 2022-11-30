@@ -1,6 +1,5 @@
 name: Deploy infrastructure
 on: push
-  workflow_dispatch:
  
 jobs:
   deploy:
