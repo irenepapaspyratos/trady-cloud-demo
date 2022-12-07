@@ -20,3 +20,9 @@ create_tf_backend_s3 $REGION $S3_BUCKET_TERRAFORM
 
 # Create Lambda-Layers
 create_aws_lambda_layer requests
+
+# Fill build-directory
+mv ../infrastructure/lambda-layer/**/*.zip ../build
+
+# Upload build-directory to src-bucket
+aws s3 cp build s3://$S3_BUCKET_SRC/ -r
