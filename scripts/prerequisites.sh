@@ -8,7 +8,7 @@ S3_BUCKET_SRC=trady-cloud-src
 S3_BUCKET_TERRAFORM=trady-cloud-terraform
 REGION=us-west-2
 
-mkdir ../build 
+mkdir build 
 
 # Create Environment Variables for Github
 create_gh_variables $REGION
