@@ -1,2 +1,1 @@
-# standard lib: os, urllib
 boto3==1.26.25
