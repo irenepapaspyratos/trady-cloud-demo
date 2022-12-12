@@ -3,7 +3,6 @@
 . ./functions_aws.sh
 . ./functions_terraform.sh
 . ./functions_github.sh
-. ./functions_crawl.sh
 
 S3_BUCKET_SRC=trady-cloud-src
 S3_BUCKET_TERRAFORM=trady-cloud-terraform
@@ -36,7 +35,7 @@ create_tf_backend_s3 $REGION $S3_BUCKET_TERRAFORM
 #create_aws_lambda_layer crawl
 
 # Create from data-crawler-templates: variables.py
-create_crawl_variables "'$SYMBOL_BUCKETS'"
+#create_crawl_variables "'$SYMBOL_BUCKETS'"
 
 # Fill build-directory
 mv ../infrastructure/lambda-layer/**/*.zip build
