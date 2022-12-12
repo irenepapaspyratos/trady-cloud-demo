@@ -10,7 +10,7 @@ S3_BUCKET_TERRAFORM=trady-cloud-terraform
 S3_BUCKET_LOGS=trady-cloud-logs
 S3_BUCKET_SYMBOLBASE=trady-cloud-symbol
 REGION=us-west-2
-SYMBOLS='EURUSD EURGBP'
+SYMBOLS="EURUSD EURGBP"
 
 mkdir build 
 
