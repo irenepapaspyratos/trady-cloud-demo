@@ -3,6 +3,7 @@
 . ./functions_aws.sh
 . ./functions_terraform.sh
 . ./functions_github.sh
+
 . ./functions_crawl.sh
 
 S3_BUCKET_SRC=trady-cloud-src
