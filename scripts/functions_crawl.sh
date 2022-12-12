@@ -1,12 +1,10 @@
 #!/bin/bash
 
-# Create variable file from template
+# Update variable file from template
 create_crawl_variables() {
-    x=$1
     buckets="["
-    for s in $1;
+    for s in "$@";
     do
-        #lower=$(echo "$s" | tr '[:upper:]' '[:lower:]')
         buckets="$buckets, '$s'"
     done
     buckets="$buckets]"
