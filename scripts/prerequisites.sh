@@ -10,7 +10,7 @@ S3_BUCKET_TERRAFORM=trady-cloud-terraform
 S3_BUCKET_LOGS=trady-cloud-logs
 S3_BUCKET_SYMBOLBASE=trady-cloud-symbol
 REGION=us-west-2
-SYMBOLS=(EURUSD EURGBP)
+SYMBOLS='EURUSD EURGBP'
 
 mkdir build 
 
@@ -18,7 +18,7 @@ mkdir build
 create_gh_variables $REGION
 
 # Create string of bucket names for symbols
-for s in "${SYMBOLS[@]}";
+for s in $SYMBOLS;
     do
         lower=$(echo "$s" | tr '[:upper:]' '[:lower:]')
         SYMBOL_BUCKETS="$SYMBOL_BUCKETS $S3_BUCKET_SYMBOLBASE-$lower"
