@@ -33,10 +33,10 @@ create_tf_variables $REGION $S3_BUCKET_TERRAFORM
 create_tf_backend_s3 $REGION $S3_BUCKET_TERRAFORM
 
 # Create Lambda-Layers
-create_aws_lambda_layer crawl
+#create_aws_lambda_layer crawl
 
 # Create from data-crawler-templates: variables.py
-create_crawl_variables "'$SYMBOL_BUCKETS'"
+#create_crawl_variables "'$SYMBOL_BUCKETS'"
 
 # Fill build-directory
 mv ../infrastructure/lambda-layer/**/*.zip build
