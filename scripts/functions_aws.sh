@@ -24,6 +24,7 @@ create_aws_s3bucket_multi() {
 
 # Create layer for Lambda
 create_aws_lambda_layer() {
+    cp ../data-crawl/requirements.txt ../infrastructure/lambda-layer/crawl-layer
     cd ../infrastructure/lambda-layer/$1-layer
     mkdir python
     cd python
