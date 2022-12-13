@@ -32,18 +32,18 @@ def load_ticks_hour_dukascopy(year:int, month:int, day:int, hour:int, symbol:str
                 error_list.append('EXCEPTION: ' + str(e) + ' ' + url)
     return error_list
 
-def create_s3_client():
+def create_client_boto3_s3():
     return boto3.client('s3')
 
-def upload_folder_to_s3(client, symbol:str, symbol_storagepath: str = variables.BASEPATH_SYMBOL, bucketlist :list = variables.SYMBOL_BUCKETS):
+def upload_folder_to_s3(client_s3, symbol:str, symbol_storagepath: str = variables.BASEPATH_SYMBOL, bucketlist :list = variables.SYMBOL_BUCKETS):
     bucket = filter(lambda f: symbol in f, bucketlist)
     for file in os.listdir(symbol_storagepath):
-        client.upload_file(f'{symbol_storagepath}{file}', list(bucket)[0], file.replace('-', '/'))
+        client_s3.upload_file(f'{symbol_storagepath}{file}', list(bucket)[0], file.replace('-', '/'))
 
-def upload_logfile(client, error_list: list, logfilepath: str = variables.DUCA_LOGFILE_PATH,  bucketlist: list = variables.SYMBOL_BUCKETS):
+def upload_logfile_to_s3(client_s3, error_list: list, logfilepath: str = variables.DUCA_LOGFILE_PATH,  bucketlist: list = variables.SYMBOL_BUCKETS):
     if len(error_list) > 0:
         with open(logfilepath, 'w') as file:
             for e in error_list:
                 file.write(e)
         bucket = filter(lambda f: 'logs' in f, bucketlist)
-        client.upload_file(logfilepath, list(bucket)[0])
+        client_s3.upload_file(logfilepath, list(bucket)[0])
