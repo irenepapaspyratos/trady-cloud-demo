@@ -12,7 +12,7 @@ S3_BUCKET_SYMBOLBASE=trady-cloud-symbol
 REGION=us-west-2
 SYMBOLS="EURUSD EURGBP"
 
-mkdir build 
+mkdir -p ../build 
 
 # Create Environment Variables for Github
 create_gh_variables $REGION
@@ -32,14 +32,14 @@ create_aws_s3bucket_multi $REGION $S3_BUCKET_SRC $S3_BUCKET_TERRAFORM $SYMBOL_BU
 create_tf_variables $REGION $S3_BUCKET_TERRAFORM
 create_tf_backend_s3 $REGION $S3_BUCKET_TERRAFORM
 
-# Create Lambda-Layers
-create_aws_lambda_layer crawl
+# Create Lambda-Layers for all modules
+create_aws_lambda_layer
 
 # Create from data-crawler-templates: variables.py
 create_crawl_variables $SYMBOL_BUCKETS
 
 # Fill build-directory
-mv ../infrastructure/lambda-layer/**/*.zip build
+mv ../infrastructure/modules/lambdas/lambda-layers/**/*.zip ../build
 
 # Upload build-directory to src-bucket
-aws s3 cp build s3://$S3_BUCKET_SRC/ --recursive
+aws s3 cp ../build s3://$S3_BUCKET_SRC/ --recursive

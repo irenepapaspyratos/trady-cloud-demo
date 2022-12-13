@@ -9,6 +9,6 @@ create_crawl_variables() {
     done
     buckets="$buckets]"
 
-    cp ../data-crawl/templates/variables.py.template ../data-crawl/variables.py
-    echo "SYMBOL_BUCKETS = $buckets"  | sed -r 's/\[, /\[/' >> ../data-crawl/variables.py
+    cp ../modules/data-crawl/templates/variables.py.template ../modules/data-crawl/variables.py
+    echo "SYMBOL_BUCKETS = $buckets"  | sed -r 's/\[, /\[/' >> ../modules/data-crawl/variables.py
 }
