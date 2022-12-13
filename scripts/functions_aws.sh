@@ -29,7 +29,7 @@ create_aws_lambda_layer() {
     for dir in ../modules/*/;
         do
             path=$(sed 's/.$//' <<< "$dir")
-            name=$(sed 's/..\/modules\///' <<< $path)
+            name=$(sed 's/..\/modules\///' <<< "$path")
             layer=../$layerbase/$name-layer
             target=$layer/python         
             mkdir -p $target
@@ -37,7 +37,7 @@ create_aws_lambda_layer() {
             cd $target
             pip3 install -r ../requirements.txt -t .
             cd ..
-            zip -r $name-layer.zip python    
+            zip -r $name-layer.zip python
             rm -rf python
             cd ../../../../../scripts
         done
