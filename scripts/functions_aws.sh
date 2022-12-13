@@ -28,8 +28,8 @@ create_aws_lambda_layer() {
 
     for dir in ../modules/*/;
         do
-            path=$(sed 's/.$//' <<< $dir)
-            name=$(sed 's/..\/modules\///' <<< $path)
+            path=$(echo $dir | sed 's/.$//')
+            name=$(echo $path | sed 's/..\/modules\///')
             layer=../$layerbase/$name-layer
             target=$layer/python         
             mkdir -p $target
