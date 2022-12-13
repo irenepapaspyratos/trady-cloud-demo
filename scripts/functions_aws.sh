@@ -26,21 +26,19 @@ create_aws_s3bucket_multi() {
 create_aws_lambda_layer() {
     layerbase=infrastructure/modules/lambdas/lambda-layers
 
-    for dir in */;
+    for dir in ../modules/*/;
         do
-            name=$(sed 's/.$//' <<< "$dir")
-            echo $name/requirements.txt
-            ls ./$name
+            path=$(sed 's/.$//' <<< "$dir")
+            name=$(sed 's/..\/modules\///' <<< $path)
             layer=../$layerbase/$name-layer
             target=$layer/python         
             mkdir -p $target
-            cp ./$name/requirements.txt $layer
+            cp $path/requirements.txt $layer
             cd $target
             pip3 install -r ../requirements.txt -t .
             cd ..
             zip -r $name-layer.zip python    
             rm -rf python
-            cd ../../../../../modules
-            ls
+            cd ../../../../../scripts
         done
 }
