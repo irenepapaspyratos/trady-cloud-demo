@@ -24,10 +24,8 @@ create_aws_s3bucket_multi() {
 
 # Create layer for Lambdas
 create_aws_lambda_layer() {
-    requirementsbase=modules
     layerbase=infrastructure/modules/lambdas/lambda-layers
-    
-    cd ../modules
+
     for dir in */;
         do
             name=$(sed 's/.$//' <<< "$dir")
@@ -45,5 +43,4 @@ create_aws_lambda_layer() {
             cd ../../../../../modules
             ls
         done
-    cd ../scripts
 }
