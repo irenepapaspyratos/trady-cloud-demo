@@ -11,12 +11,23 @@ DUCA_LOGFILE_PATH = f'{BASEPATH_LAMBDA}{TODAY}.log'.replace(' ', '-')
 
 # Earliest starting dates determined by Dukascopy
 START_DATES = {
-    'EURUSD': datetime(2003, 5, 4),
-    'EURGBP': datetime(2003, 8, 3)
+    'EURUSD': {
+        'year': 2003, 
+        'month': 5, 
+        'day': 4
+    },
+    'EURGBP': {
+        'year': 2003, 
+        'month': 8, 
+        'day': 3
+    }
 }
 
 # Latest stopping date determined by Dukascopy
 DEFAULT_STOP = TODAY - DAY
 
 # AWS S3 symbol bucket names
-SYMBOL_BUCKETS = ['trady-cloud-symbol-eurusd', 'trady-cloud-symbol-eurgbp', 'trady-cloud-logs']
+S3_BUCKET_SYMBOLBASE = 'trady-cloud-symbol'
+S3_BUCKET_SYMBOL_LAKE = 'trady-cloud-symbol-lake'
+S3_BUCKET_SYMBOL_LOGS = 'trady-cloud-symbol-logs'
+SYMBOL_BUCKETS = ['trady-cloud-symbol-eurusd', 'trady-cloud-symbol-eurgbp']
