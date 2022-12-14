@@ -5,41 +5,45 @@
 . ./functions_github.sh
 . ./functions_crawl.sh
 
-S3_BUCKET_SRC=trady-cloud-src
-S3_BUCKET_TERRAFORM=trady-cloud-terraform
-S3_BUCKET_LOGS=trady-cloud-logs
-S3_BUCKET_SYMBOLBASE=trady-cloud-symbol
-REGION=us-west-2
+NAME_BASE=trady-cloud
 SYMBOLS="EURUSD EURGBP"
+REGION=us-west-2
 
+S3_BUCKET_SRC=$NAME_BASE-src
+S3_BUCKET_TERRAFORM=$NAME_BASE-terraform
+S3_BUCKET_SYMBOLBASE=$NAME_BASE-symbol
+S3_BUCKET_SYMBOL_LAKE=$S3_BUCKET_SYMBOLBASE-lake
+S3_BUCKET_SYMBOL_LOGS=$S3_BUCKET_SYMBOLBASE-logs
+
+# Create build folder
 mkdir build 
 
 # Create Environment Variables for Github
 create_gh_variables $REGION
 
 # Create string of bucket names for symbols
-for s in $SYMBOLS;
+sym=$(echo "$SYMBOLS" | tr '[:upper:]' '[:lower:]')
+for s in $sym;
     do
-        lower=$(echo "$s" | tr '[:upper:]' '[:lower:]')
-        SYMBOL_BUCKETS="$SYMBOL_BUCKETS $S3_BUCKET_SYMBOLBASE-$lower"
+        SYMBOL_BUCKETS="$SYMBOL_BUCKETS $S3_BUCKET_SYMBOLBASE-$s"
     done
-SYMBOL_BUCKETS="$SYMBOL_BUCKETS $S3_BUCKET_LOGS"
+CREATE_BUCKETS="$S3_BUCKET_SRC $S3_BUCKET_TERRAFORM $S3_BUCKET_SYMBOL_LAKE $S3_BUCKET_SYMBOL_LOGS $SYMBOL_BUCKETS"
 
 # Create necessary buckets (for Terraform via script as the sandbox does not allow creating them via Terraform itself)
-create_aws_s3bucket_multi $REGION $S3_BUCKET_SRC $S3_BUCKET_TERRAFORM $SYMBOL_BUCKETS
+create_aws_s3bucket_multi $REGION $CREATE_BUCKETS
 
 # Create from terraform-templates with variables: config.backend & variables
 create_tf_variables $REGION $S3_BUCKET_TERRAFORM
 create_tf_backend_s3 $REGION $S3_BUCKET_TERRAFORM
 
-# Create Lambda-Layers
-create_aws_lambda_layer crawl
+# Create Lambda-Layers for all modules
+create_aws_lambda_layer
 
 # Create from data-crawler-templates: variables.py
-create_crawl_variables $SYMBOL_BUCKETS
+create_crawl_variables $S3_BUCKET_SYMBOLBASE $S3_BUCKET_SYMBOL_LAKE $S3_BUCKET_SYMBOL_LOGS $SYMBOL_BUCKETS
 
 # Fill build-directory
-mv ../infrastructure/lambda-layer/**/*.zip build
+mv ../infrastructure/modules/lambdas/lambda-layers/**/*.zip build
 
 # Upload build-directory to src-bucket
 aws s3 cp build s3://$S3_BUCKET_SRC/ --recursive

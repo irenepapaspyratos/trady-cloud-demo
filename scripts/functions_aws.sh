@@ -22,15 +22,23 @@ create_aws_s3bucket_multi() {
         done
 }
 
-# Create layer for Lambda
+# Create layer for Lambdas
 create_aws_lambda_layer() {
-    cp ../data-crawl/requirements.txt ../infrastructure/lambda-layer/crawl-layer
-    cd ../infrastructure/lambda-layer/$1-layer
-    mkdir python
-    cd python
-    pip3 install -r ../requirements.txt -t .
-    cd ..
-    zip -r requests_layer.zip python    
-    rm -rf python
-    cd ../../../scripts
+    layerbase=infrastructure/modules/lambdas/lambda-layers
+
+    for dir in ../modules/*/;
+        do
+            path=$(echo $dir | sed 's/.$//')
+            name=$(echo $path | sed 's/..\/modules\///')
+            layer=../$layerbase/$name-layer
+            target=$layer/python         
+            mkdir -p $target
+            cp $path/requirements.txt $layer
+            cd $target
+            pip3 install -r ../requirements.txt -t .
+            cd ..
+            zip -r $name-layer.zip python
+            rm -rf python
+            cd ../../../../../scripts
+        done
 }
