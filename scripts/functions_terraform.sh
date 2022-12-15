@@ -2,7 +2,17 @@
 
 # Create variable file from template
 create_tf_variables() {
-    sed -e s/REGION/${1}/ -e s/S3_BUCKET_TERRAFORM/${2}/ \
+    region=$1
+    terra=$2
+    src=$3
+    runtime=$4
+    shift;shift;shift;shift;
+    sym=' '
+    for s in "$@";
+        do
+            sym="$sym, \"$s\""
+        done
+    sed -e s/REGION/${region}/ -e s/S3_BUCKET_TERRAFORM/${terra}/ -e s/S3_BUCKET_SRC/${src}/ -e s/COMPATIBLE_RUNTIMES_LAMBDA/${runtime}/  -e s/SYMBOLSLIST/"$(echo $sym | sed 's/, //')"/ \
     < ../infrastructure/templates/variables.tf.template > ../infrastructure/variables.tf
 }
 

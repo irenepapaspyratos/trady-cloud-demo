@@ -24,7 +24,7 @@ create_aws_s3bucket_multi() {
 
 # Create layer for Lambdas
 create_aws_lambda_layer() {
-    layerbase=infrastructure/modules/lambdas/lambda-layers
+    layerbase=infrastructure/source/lambda-layers
 
     for dir in ../modules/*/;
         do
@@ -39,6 +39,6 @@ create_aws_lambda_layer() {
             cd ..
             zip -r $name-layer.zip python
             rm -rf python
-            cd ../../../../../scripts
+            cd ../../../../scripts
         done
 }
