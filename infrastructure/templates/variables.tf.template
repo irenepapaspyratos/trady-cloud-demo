@@ -7,3 +7,18 @@ variable "s3bucket_terraform" {
     type = string
     default = "S3_BUCKET_TERRAFORM"
 }
+
+variable "s3bucket_src" {
+    type = string
+    default = "S3_BUCKET_SRC"
+}
+
+variable "compatible_runtimes" {
+    type = list
+    default = ["COMPATIBLE_RUNTIMES_LAMBDA"]
+}
+
+variable "symbols" {
+    type = list
+    default = [SYMBOLSLIST]
+}
