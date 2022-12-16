@@ -19,5 +19,5 @@ create_tf_variables() {
 # Create configuration file for s3 backend from template
 create_tf_backend_s3() {
     sed -e s/REGION/${1}/ -e s/S3_BUCKET_TERRAFORM/${2}/ \
-    < ../infrastructure/templates/config.s3.tfbackend.template > ../infrastructure/config.s3.tfbackend
+    < ../infrastructure/templates/config.s3.tfbackend.template > ../infrastructure/production_env/config.s3.tfbackend
 }

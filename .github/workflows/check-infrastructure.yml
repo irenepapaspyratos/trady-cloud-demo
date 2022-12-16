@@ -26,5 +26,5 @@ jobs:
       - name: Run terraform
         run:  |
           cd infrastructure
-          terraform init -backend-config=./config.s3.tfbackend
+          terraform init -backend-config=./production_env/config.s3.tfbackend
           terraform apply -auto-approve
