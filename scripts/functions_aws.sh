@@ -42,3 +42,9 @@ create_aws_lambda_layer() {
             cd ../../../../scripts
         done
 }
+
+create_aws_lambda() {
+    cd ../modules/data-crawl-hour
+    zip data-crawl-hour.zip *.py
+    cd ../../scripts
+}
