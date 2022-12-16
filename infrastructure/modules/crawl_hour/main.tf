@@ -5,6 +5,7 @@ resource "aws_lambda_function" "data_crawl_hour" {
   role          = "arn:aws:iam::${var.caller_account}:role/LabRole"
   handler       = "crawl.handler"
   timeout       = 900
+  memory_size   = 1024
   runtime       = var.comp_runtimes[0]
   layers        = [aws_lambda_layer_version.data_crawl_hour_layer.arn]
 
