@@ -9,20 +9,6 @@ BASEPATH_SYMBOL = f'{BASEPATH_LAMBDA}symbol/'
 DUCA_APIBASE = 'http://www.dukascopy.com/datafeed'
 DUCA_LOGFILE_PATH = f'{BASEPATH_LAMBDA}{TODAY}.log'.replace(' ', '-')
 
-# Earliest starting dates determined by Dukascopy
-START_DATES = {
-    'EURUSD': {
-        'year': 2003, 
-        'month': 5, 
-        'day': 4
-    },
-    'EURGBP': {
-        'year': 2003, 
-        'month': 8, 
-        'day': 3
-    }
-}
-
 # Latest stopping date determined by Dukascopy
 DEFAULT_STOP = TODAY - DAY
 
