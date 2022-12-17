@@ -23,3 +23,18 @@ resource "aws_lambda_layer_version" "data_crawl_hour_layer" {
 
   compatible_runtimes = var.comp_runtimes
 }
+
+resource "aws_lambda_permission" "cloudwatch_permission_crawl_hour" {
+    statement_id = "AllowExecutionFromCloudWatch"
+    action = "lambda:InvokeFunction"
+    function_name = aws_lambda_function.data_crawl_hour.function_name
+    principal = "events.amazonaws.com"
+    source_arn = module.cloudwatch_hour.arn
+}
+
+output "out" {
+  value = {
+    "arn": "${aws_lambda_function.data_crawl_hour.arn}",
+    "lambda_name": "${aws_lambda_function.data_crawl_hour.function_name}"
+  }
+}

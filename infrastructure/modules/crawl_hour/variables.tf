@@ -5,7 +5,7 @@ variable "lambda_name" {
 }
 
 variable "lambda_src" {
-    description = "Path to .zip (layer in bucket)"
+    description = "Path to .zip"
     type = map
     default = {
         "function": {
