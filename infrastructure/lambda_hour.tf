@@ -1,5 +1,5 @@
-module "crawl_hour" {
-    source = "./modules/crawl_hour"
+module "lambda_crawl_hour" {
+    source = "./modules/lambda_crawl_hour"
 
     for_each = {for i, v in var.symbols: i=>v}
     
