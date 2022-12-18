@@ -5,7 +5,7 @@ variable "lambda_name" {
 }
 
 variable "lambda_src" {
-    description = "Path to .zip (layer in bucket)"
+    description = "Path to .zip"
     type = map
     default = {
         "function": {
@@ -31,3 +31,15 @@ variable "symbol_current" {
 variable "caller_account" {
     type = string
 } 
+
+variable "target_rule" {
+  type = string
+}
+
+variable "target_id" {
+  type = string
+}
+
+variable "cloudwatch_name" {
+  type = string
+}
