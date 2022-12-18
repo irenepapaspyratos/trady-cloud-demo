@@ -1,3 +1,21 @@
+variable "start_timestamp" {
+    type = map
+    default = {
+        "eurusd": "2003-05-04T00:01:01Z"
+        "eurgbp": "2003-08-03T00:01:01Z"
+    }
+}
+
+variable "lambda_src" {
+    type        = map
+    default     = { "function": "data-crawl-hour.zip", "layer": "data-crawl-hour-layer.zip" }
+}
+
+variable "crawl_handler" {
+    type = string
+    default = "crawl.handler"
+}
+
 variable "aws_region" {
     type = string
     default = "REGION"
