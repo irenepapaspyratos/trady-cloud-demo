@@ -22,7 +22,7 @@ def handler(event, context):
     load_ticks_hour_dukascopy(symbol, errors, crawl[0], crawl[1], crawl[2], crawl[3])
     upload_to_bucket(client_s3, errors)
 
-    return ({"settings": settings, "errors": errors})
+    return ({"crawl_hour": os.getenv('DEFAULT_CRAWL'), "settings": settings, "errors": errors})
     
 if __name__ == "__main__":
     handler({},{})
