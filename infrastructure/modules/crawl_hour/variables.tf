@@ -31,3 +31,15 @@ variable "symbol_current" {
 variable "caller_account" {
     type = string
 } 
+
+variable "target_rule" {
+  type = string
+}
+
+variable "target_id" {
+  type = string
+}
+
+variable "cloudwatch_name" {
+  type = string
+}

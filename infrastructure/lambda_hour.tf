@@ -8,15 +8,7 @@ module "crawl_hour" {
     comp_runtimes = "${var.compatible_runtimes}"
     s3bucket_source = "${var.s3bucket_src}"
     caller_account = "${local.account_id}"
-}
-
-output "out" {
-  value = [
-    for i, v in var.symbols: 
-        {
-            "${v}": {
-                "lambda_name": module.crawl_hour[i].out["lambda_name"], "arn": module.crawl_hour[i].out["arn"]
-            }
-        }
-    ]  
+    target_rule = "crawl_hour_target_${each.value}"
+    target_id = "data_crawl_hourly_${each.value}"
+    cloudwatch_name = "cloudwatch_hour_${each.value}"
 }

@@ -20,16 +20,28 @@ resource "aws_lambda_layer_version" "data_crawl_hour_layer" {
   layer_name    = "data_crawl_hour_layer"
   s3_bucket     = var.s3bucket_source
   s3_key        = var.lambda_src["layer"]["hour"]
-
   compatible_runtimes = var.comp_runtimes
 }
 
-resource "aws_lambda_permission" "cloudwatch_permission_crawl_hour" {
-    statement_id = "AllowExecutionFromCloudWatch"
-    action = "lambda:InvokeFunction"
-    function_name = aws_lambda_function.data_crawl_hour.function_name
-    principal = "events.amazonaws.com"
-    source_arn = module.cloudwatch_hour.arn
+module "cloudwatch_hour" {
+    source = "../cloudwatch_hour"
+
+    cloudwatch_name = var.cloudwatch_name
+}
+
+module "lambda_permission" {
+    source = "../lambda_permission"
+
+    lambda_name = var.lambda_name
+    cloudwatch_arn = module.cloudwatch_hour.out["arn"]
+}
+
+module "cloudwatch_target" {
+    source = "../cloudwatch_target"
+
+    target_rule = module.cloudwatch_hour.out["name"]
+    target_id = var.target_id
+    lambda_arn = aws_lambda_function.data_crawl_hour.arn
 }
 
 output "out" {
