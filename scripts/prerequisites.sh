@@ -39,14 +39,16 @@ create_aws_s3bucket_multi $REGION $CREATE_BUCKETS
 create_tf_variables $REGION $S3_BUCKET_TERRAFORM $S3_BUCKET_SRC $COMPATIBLE_RUNTIMES_LAMBDA $SYMBOLS_LOWER
 create_tf_backend_s3 $REGION $S3_BUCKET_TERRAFORM
 
-# Create Lambda-Layers for all modules
+# Create Lambda and Layers
 create_aws_lambda_layer
+create_aws_lambda
 
 # Create from data-crawler-templates: variables.py
 create_crawl_variables $S3_BUCKET_SYMBOLBASE $S3_BUCKET_SYMBOL_LAKE $S3_BUCKET_SYMBOL_LOGS $SYMBOL_BUCKETS
 
 # Fill build-directory
 mv ../infrastructure/source/lambda-layers/**/*.zip ../build
+mv ../modules/**/*.zip ../build
 
 # Upload build-directory to src-bucket
 aws s3 cp ../build s3://$S3_BUCKET_SRC/ --recursive

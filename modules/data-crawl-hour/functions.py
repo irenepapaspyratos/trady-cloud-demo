@@ -1,11 +1,12 @@
 import variables
+from starts import DATES
 import os
 import urllib.request
 import urllib.error
 from datetime import datetime
 import boto3
 
-def setup(symbol_storagepath:str = variables.BASEPATH_SYMBOL, logfilepath:str = variables.DUCA_LOGFILE_PATH):
+def setup(symbol:str, symbol_storagepath:str = variables.BASEPATH_SYMBOL, logfilepath:str = variables.DUCA_LOGFILE_PATH):
     if not os.path.exists(symbol_storagepath):
         os.mkdir(symbol_storagepath)
     return {
@@ -17,7 +18,7 @@ def setup(symbol_storagepath:str = variables.BASEPATH_SYMBOL, logfilepath:str = 
             'day': datetime.utcnow().day,
             'hour': datetime.utcnow().hour
         },
-        'default_start': variables.START_DATES
+        'default_start': DATES[symbol.upper()]
     }
 
 def get_utc_lastday_month(month:int = datetime.utcnow().month, year:int = datetime.utcnow().year):
