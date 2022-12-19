@@ -17,8 +17,8 @@ variable "crawl_handler" {
 }
 
 variable "symbol_ranges_hour" {
-    type = map(number)
-    default = {"eurusd":172064, "eurgbp":169880}
+    type = map
+    default = { "eurusd": "172067", "eurgbp": "169883" }
 }
 
 variable "aws_region" {
