@@ -17,7 +17,7 @@ variable "crawl_handler" {
 }
 
 variable "symbol_ranges_hour" {
-    type = map
+    type = map(number)
     default = {RANGES}
 }
 
