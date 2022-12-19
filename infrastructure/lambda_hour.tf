@@ -3,7 +3,6 @@ module "lambda_crawl_hour" {
 
     for_each = {for i, v in var.symbols: i=>v}
     
-    
     lambda_name = "crawl_hour_${each.value}"
     lambda_src_function = var.lambda_src["function"]
     lambda_src_layer = var.lambda_src["layer"]
