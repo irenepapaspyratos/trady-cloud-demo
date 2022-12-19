@@ -13,7 +13,7 @@ create_tf_variables() {
         do
             sym="$sym, \"$s\""
         done
-    sed -e s/REGION/${region}/ -e s/S3_BUCKET_TERRAFORM/${terra}/ -e s/S3_BUCKET_SRC/${src}/ -e s/COMPATIBLE_RUNTIMES_LAMBDA/${runtime}/ -e s/RANGES/"$(echo $ranges | sed 's/^,//')"/ -e s/SYMBOLSLIST/"$(echo $sym | sed 's/, //')"/ \
+    sed -e s/REGION/${region}/ -e s/S3_BUCKET_TERRAFORM/${terra}/ -e s/S3_BUCKET_SRC/${src}/ -e s/COMPATIBLE_RUNTIMES_LAMBDA/${runtime}/ -e s/RANGES/"$(echo $ranges | sed 's/,/, /')"/ -e s/SYMBOLSLIST/"$(echo $sym | sed 's/, //')"/ \
     < ../infrastructure/templates/variables.tf.template > ../infrastructure/variables.tf
 }
 

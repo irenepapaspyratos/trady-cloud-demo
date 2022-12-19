@@ -1,13 +1,12 @@
 #!/bin/bash
 
 create_ranges() {
-    ARRAY=( "eurusd:2003050400"
-            "eurgbp:2003080300")
+    ARRAY='eurusd:2003050400 eurgbp:2003080300'
 
     TODAY_DATE=`date +%Y%m%d%H`
     TODAY_STAMP=$(date -j -f "%Y%m%d%H" "${TODAY_DATE}" "+%s")
 
-    for symbol in "${ARRAY[@]}"
+    for symbol in $ARRAY
         do
             key="${symbol%%:*}"
             value="${symbol##*:}"
@@ -16,5 +15,5 @@ create_ranges() {
             RANGE="$RANGE,\"$key\":\"$hours\""
         done
 
-    echo "$RANGE"
+    echo "$RANGE" | sed -r 's/^,//'
 }
