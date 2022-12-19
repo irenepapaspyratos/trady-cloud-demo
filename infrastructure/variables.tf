@@ -1,4 +1,4 @@
-variable "start_timestamp" {
+variable "default_timestamp" {
     type = map
     default = {
         "eurusd": "2003-05-04T00:01:01Z"
