@@ -42,6 +42,6 @@ variable "symbols" {
 }
 
 variable "initial_hours" {
-    type = map(number)
-    default = { "eurusd":172078, "eurgbp":169894 }
+    type        = map(string)
+    default     = { "function": "data-crawl-hour.zip", "layer": "data-crawl-hour-layer.zip" }
 }
