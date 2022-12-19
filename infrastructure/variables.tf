@@ -6,14 +6,14 @@ variable "start_timestamp" {
     }
 }
 
+variable "start_timestamp_number" {
+    type        = map(number)
+    default     = { "eurusd": 1051999200, "eurgbp": 1059861600 }
+}
+
 variable "lambda_src" {
     type        = map(string)
     default     = { "function": "data-crawl-hour.zip", "layer": "data-crawl-hour-layer.zip" }
-}
-
-variable "initial_timestamp" {
-    type        = map(number)
-    default     = { "eurusd": 1051999200, "eurgbp": 1059861600 }
 }
 
 variable "crawl_handler" {
