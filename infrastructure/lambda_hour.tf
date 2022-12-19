@@ -1,7 +1,7 @@
 module "lambda_crawl_hour" {
     source = "./modules/lambda/lambda_crawl_hourly"
 
-    for_each = toset(var.symbols)
+    for_each = toset(var.symbols) 
     
     lambda_name = "crawl_hour_${each.value}"
     lambda_src_function = var.lambda_src["function"]
