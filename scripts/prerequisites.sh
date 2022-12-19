@@ -4,6 +4,7 @@
 . ./functions_terraform.sh
 . ./functions_github.sh
 . ./functions_crawl.sh
+. ./ranges.sh
 
 NAME_BASE=trady-cloud
 SYMBOLS='EURUSD eurgbp'
@@ -17,6 +18,7 @@ S3_BUCKET_SYMBOLBASE=$NAME_BASE-symbol
 S3_BUCKET_SYMBOL_LAKE=$S3_BUCKET_SYMBOLBASE-lake
 S3_BUCKET_SYMBOL_LOGS=$S3_BUCKET_SYMBOLBASE-logs
 SYMBOLS_LOWER=$(echo "$SYMBOLS" | tr '[:upper:]' '[:lower:]')
+RANGES_DICT="$(create_ranges)"
 
 
 # Create build folder
@@ -36,7 +38,7 @@ CREATE_BUCKETS="$S3_BUCKET_SRC $S3_BUCKET_TERRAFORM $S3_BUCKET_SYMBOL_LAKE $S3_B
 create_aws_s3bucket_multi $REGION $CREATE_BUCKETS
 
 # Create from terraform-templates with variables: config.backend & variables
-create_tf_variables $REGION $S3_BUCKET_TERRAFORM $S3_BUCKET_SRC $COMPATIBLE_RUNTIMES_LAMBDA $SYMBOLS_LOWER
+create_tf_variables $REGION $S3_BUCKET_TERRAFORM $S3_BUCKET_SRC $COMPATIBLE_RUNTIMES_LAMBDA $RANGES_DICT $SYMBOLS_LOWER
 create_tf_backend_s3 $REGION $S3_BUCKET_TERRAFORM
 
 # Create Lambda and Layers
