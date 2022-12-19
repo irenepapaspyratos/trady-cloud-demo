@@ -16,7 +16,6 @@ variable "crawl_handler" {
     default = "crawl.handler"
 }
 
-
 variable "aws_region" {
     type = string
     default = "us-west-2"
@@ -40,4 +39,9 @@ variable "compatible_runtimes" {
 variable "symbols" {
     type = list(string)
     default = ["eurusd", "eurgbp"]
+}
+
+variable "initial_hours" {
+    type = map(number)
+    default = { "eurusd":172078, "eurgbp":169894 }
 }
