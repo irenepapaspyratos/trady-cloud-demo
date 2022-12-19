@@ -16,11 +16,6 @@ variable "crawl_handler" {
     default = "crawl.handler"
 }
 
-variable "symbol_ranges_hour" {
-    type = map
-    default = {RANGES}
-}
-
 variable "aws_region" {
     type = string
     default = "REGION"
