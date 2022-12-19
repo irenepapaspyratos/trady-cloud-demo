@@ -11,7 +11,6 @@ variable "lambda_src" {
     default     = { "function": "data-crawl-hour.zip", "layer": "data-crawl-hour-layer.zip" }
 }
 
-
 variable "initial_timestamp" {
     type        = map(number)
     default     = { "eurusd": 1051999200, "eurgbp": 1059861600 }
@@ -38,11 +37,11 @@ variable "s3bucket_src" {
 }
 
 variable "compatible_runtimes" {
-    type = list(string)
+    type = list
     default = ["python3.9"]
 }
 
 variable "symbols" {
-    type = list(string)
+    type = list
     default = ["eurusd", "eurgbp"]
 }
