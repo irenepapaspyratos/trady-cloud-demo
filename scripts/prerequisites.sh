@@ -38,7 +38,7 @@ CREATE_BUCKETS="$S3_BUCKET_SRC $S3_BUCKET_TERRAFORM $S3_BUCKET_SYMBOL_LAKE $S3_B
 create_aws_s3bucket_multi $REGION $CREATE_BUCKETS
 
 # Create from terraform-templates with variables: config.backend & variables
-create_tf_variables $REGION $S3_BUCKET_TERRAFORM $S3_BUCKET_SRC $COMPATIBLE_RUNTIMES_LAMBDA $SYMBOL_RANGES $SYMBOLS_LOWER
+create_tf_variables $REGION $S3_BUCKET_TERRAFORM $S3_BUCKET_SRC $COMPATIBLE_RUNTIMES_LAMBDA $SYMBOLS_LOWER
 create_tf_backend_s3 $REGION $S3_BUCKET_TERRAFORM
 
 # Create Lambda and Layers
