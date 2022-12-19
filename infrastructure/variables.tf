@@ -16,10 +16,6 @@ variable "crawl_handler" {
     default = "crawl.handler"
 }
 
-variable "range_hours" {
-    type = map(number)
-    default = { "eurusd": 172077, "eurgbp": 169893 }
-}
 
 variable "aws_region" {
     type = string
