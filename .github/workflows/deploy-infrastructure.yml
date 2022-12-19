@@ -21,8 +21,6 @@ jobs:
       - name: Setup prerequisites
         run:  |
           cd scripts
-          aws sts get-caller-identity | cat
-          aws configure list 
           sh prerequisites.sh
       - name: Run terraform
         run:  |
