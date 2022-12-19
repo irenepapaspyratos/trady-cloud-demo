@@ -11,6 +11,12 @@ variable "lambda_src" {
     default     = { "function": "data-crawl-hour.zip", "layer": "data-crawl-hour-layer.zip" }
 }
 
+
+variable "initial_timestamp" {
+    type        = map(number)
+    default     = { "eurusd": 1051999200, "eurgbp": 1059861600 }
+}
+
 variable "crawl_handler" {
     type = string
     default = "crawl.handler"
@@ -39,9 +45,4 @@ variable "compatible_runtimes" {
 variable "symbols" {
     type = list(string)
     default = [SYMBOLSLIST]
-}
-
-variable "initial_hours" {
-    type        = map(string)
-    default     = { "function": "data-crawl-hour.zip", "layer": "data-crawl-hour-layer.zip" }
 }
