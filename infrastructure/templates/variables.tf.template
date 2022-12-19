@@ -42,6 +42,6 @@ variable "symbols" {
 }
 
 variable "initial_hours" {
-    type = list(string)
-    default = [SYMBOLSLIST]
+    type = map(number)
+    default = { SYMBOLSRANGES }
 }

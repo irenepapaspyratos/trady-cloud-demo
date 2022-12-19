@@ -42,6 +42,6 @@ variable "symbols" {
 }
 
 variable "initial_hours" {
-    type = list(string)
-    default = ["eurusd", "eurgbp"]
+    type = map(number)
+    default = { "eurusd":172078, "eurgbp":169894 }
 }
