@@ -1,5 +1,5 @@
 variable "start_timestamp" {
-    type = map
+    type = map(string)
     default = {
         "eurusd": "2003-05-04T00:01:01Z"
         "eurgbp": "2003-08-03T00:01:01Z"
@@ -7,13 +7,18 @@ variable "start_timestamp" {
 }
 
 variable "lambda_src" {
-    type        = map
+    type        = map(string)
     default     = { "function": "data-crawl-hour.zip", "layer": "data-crawl-hour-layer.zip" }
 }
 
 variable "crawl_handler" {
     type = string
     default = "crawl.handler"
+}
+
+variable "range_hours" {
+    type = map(number)
+    default = { "eurusd": 172077, "eurgbp": 169893 }
 }
 
 variable "aws_region" {
@@ -32,11 +37,11 @@ variable "s3bucket_src" {
 }
 
 variable "compatible_runtimes" {
-    type = list
+    type = list(string)
     default = ["python3.9"]
 }
 
 variable "symbols" {
-    type = list
+    type = list(string)
     default = ["eurusd", "eurgbp"]
 }
