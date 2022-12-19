@@ -18,7 +18,7 @@ variable "crawl_handler" {
 
 variable "symbol_ranges_hour" {
     type = map
-    default = { "function": "data-crawl-hour.zip", "layer": "data-crawl-hour-layer.zip" }
+    default = {"eurusd"=172070, "eurgbp"=169886}
 }
 
 variable "aws_region" {
