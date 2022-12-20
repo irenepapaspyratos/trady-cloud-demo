@@ -10,9 +10,9 @@ It contains a demo application, which requests 1-hour-delayed tick-data for vari
 - Place credentials etc. locally
 - Run start_script.sh
 
-**If you want to change some code:** 
+**If you want to change some code using Github:** 
 
 - Place your credentials etc. as secrets in your Github account  
 
 **ATTENTION:**   
-When you push any changes of the code to Github, they will be automatically applied via terraform to your AWS infrastructure !!**
+When you push any changes of the code to Github, they will be automatically applied via terraform to your AWS infrastructure !!
