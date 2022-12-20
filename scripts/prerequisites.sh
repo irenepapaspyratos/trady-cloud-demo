@@ -40,8 +40,8 @@ create_tf_variables $REGION $S3_BUCKET_TERRAFORM $S3_BUCKET_SRC $COMPATIBLE_RUNT
 create_tf_backend_s3 $REGION $S3_BUCKET_TERRAFORM
 
 # Create Lambda and Layers
-create_aws_lambda_layer
-create_aws_lambda
+create_aws_lambda_layer_zip
+create_aws_lambda_zip
 
 # Create from data-crawler-templates: variables.py
 create_crawl_variables $S3_BUCKET_SYMBOLBASE $S3_BUCKET_SYMBOL_LAKE $S3_BUCKET_SYMBOL_LOGS $SYMBOL_BUCKETS
