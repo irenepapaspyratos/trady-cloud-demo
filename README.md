@@ -7,6 +7,12 @@ It contains a demo application, which requests 1-hour-delayed tick-data for vari
 # Usage
 
 - Copy the project
+- Place credentials etc. locally
 - Run start_script.sh
 
-**Note: When you push any changes of the code to Github, they will be automatically applied via terraform to your AWS infrastructure !!**
+**If you want to change some code:** 
+
+- Place your credentials etc. as secrets in your Github account  
+
+**ATTENTION:**   
+When you push any changes of the code to Github, they will be automatically applied via terraform to your AWS infrastructure !!**
