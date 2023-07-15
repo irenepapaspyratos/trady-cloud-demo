@@ -1,6 +1,6 @@
-# Trady Cloud Demo
+# Trady Cloud
 
-This project is the final project of the AWS Cloud Development Certification of 2022 at *Neue Fische*.
+This is the final project of my AWS Cloud Development Certification in 2022 at *Neue Fische*.
 
 It contains a demo application, which requests 1-hour-delayed tick-data for various symbols serverless from *Dukascopy* to create a database for backtesting of trading strategies. The infrastructure is generated with Terraform while CI/CD principles are followed via Github Workflows. As certain functions cannot be used in the sandbox of AWS, this project was created adhering to those restrictions.
 
